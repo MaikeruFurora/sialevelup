@@ -167,7 +167,7 @@ $(function () {
             case "Invoice":
                 $(".dialogs")
                     .removeClass("modal-md modal-lg")
-                    .addClass("modal-xl");
+                    .addClass("modal-lg");
                 break;
             case "User_Guide":
                 $(".dialogs")
@@ -616,8 +616,8 @@ $(function () {
                 popupCenter({
                     url: `http://127.0.0.1:8000/invoiceCustomer/${id}`,
                     title: "Print All Product",
-                    w: 800,
-                    h: 700,
+                    w: 850,
+                    h: 800,
                 });
             })
             .fail(function (jqxHR, textStatus, errorThrown) {

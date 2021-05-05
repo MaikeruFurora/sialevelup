@@ -43,10 +43,11 @@
         <thead class="border">
             <tr>
                 <th>No.</th>
-                <th width="25%">Purchase Item</th>
-                <th>Quantity</th>
-                <th width="15%">Price</th>
-                <th width="15%">Amount</th>
+                <th width="20%">Purchase Item</th>
+                <th>Descptions</th>
+                <th width="11%">Quantity</th>
+                <th width="13%">Price</th>
+                <th width="13%">Amount</th>
             </tr>
         </thead>
         <tbody>
@@ -55,6 +56,7 @@
                 <tr>
                     <td>{{ $i++}}</td>
                     <td>{{ $item->product->pname }}</td>
+                    <td>{{ $item->product->pdescription }}</td>
                     <td>{{ $item->quantity }}</td>
                     <td>₱ {{ $item->product->pprice }}.00</td>
                     <td>₱ {{ $item->perItemAmount }}.00</td>
@@ -64,14 +66,14 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="text-center">No data Available</td>
+                    <td colspan="6" class="text-center">No data Available</td>
                 </tr>
             @endforelse
             <tr>
-                <td colspan="5"></td>
+                <td colspan="6"></td>
             </tr>
             <tr>
-                <td colspan="3" style="background: #BCDFF5;">
+                <td colspan="4" style="background: #BCDFF5;">
                     <small><b>Notes:</b></small><br>
                     <small>Get some color inspiration with Color Hunt's green palettes collection and find the perfect scheme for your design or art project.</small>
                 </td>
@@ -81,5 +83,10 @@
             </tr>
         </tbody>
       </table>
+      <div class="text-center">
+        <img class="mt-5" src="{{ asset('img/img.png') }}" alt="" width="50">
+        <h6 class="">Invoice<small>2021</small></h6>
+        <small>If you have any enqueries concerning this <br> invoice, please contact us!</small>
+      </div>
 </body>
 </html>
