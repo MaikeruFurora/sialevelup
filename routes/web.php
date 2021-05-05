@@ -34,7 +34,8 @@ Route::post('/Product-show/{product}', 'ProductController@show');
 Route::post('/Order-post', 'OrderController@store');
 Route::get('/sortCustomer', 'OrderController@sortCustomer');
 Route::delete('/deleteCustomer/{id}', 'OrderController@deleteCustomer');
-Route::get('/invoice', 'OrderController@invoice');
+Route::get('/invoiceCustomer/{id}', 'OrderController@invoiceCustomer');
+// Route::get('/invoice', 'OrderController@invoice');
 Route::get('/print', 'ProductController@print');
 Route::get('/print1', 'ProductController@print1');
 

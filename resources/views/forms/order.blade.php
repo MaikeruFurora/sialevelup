@@ -1,6 +1,6 @@
 <div id="OrderDiv">
     <div class="row">
-        <div class="col-3">
+        <div class="col-lg-3 col-md-12 col-sm-12">
             <form id="orderForm">@csrf
                 <div class="card">
                     <div class="card-body">
@@ -33,24 +33,24 @@
                 </div>
             </form>
         </div>
-        <div class="col-9">
+        <div class="col-lg-9 col-md-12 col-sm-12">
             <div class="card">
                 <div class="card-body p-2">
                     <div class="form-row">
-                        <div class="col-3">
+                        <div class="col-lg-3 col-md-12 col-sm-12">
                             <select class="form-control form-control-sm" id="selectProduct" data-live-search="true"
                                 placeholder="Choose Product" data-size="5">
                             </select>
                         </div>
-                        <div class="col-2">
+                        <div class="col-lg-2 col-md-12 col-sm-12">
                             <input type="text" class="form-control form-control-sm" id="origPrice" placeholder="Price"
                                 readonly>
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-3 col-md-12 col-sm-12">
                             <input type="number" required class="form-control form-control-sm" id="enteredQuantity"
                                 placeholder="Enter Quantity">
                         </div>
-                        <div class="col-3">
+                        <div class="col-lg-3 col-md-12 col-sm-12">
                             <div class="input-group input-group-sm mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">₱</span>
@@ -59,7 +59,7 @@
                                     placeholder="Amount" readonly>
                             </div>
                         </div>
-                        <div class="col-1">
+                        <div class="col-lg-1 col-md-12 col-sm-12">
                             <button class="btn btn-primary btn-block btn-sm btnSave">+</button>
                         </div>
                     </div>

@@ -48,7 +48,7 @@ class OrderController extends Controller
          *          ->select("*")
          *          ->distinct("customers.cname")
          *          ->join("customers","customers.id","=","orders.customer_id")
-         *          ->get();
+         *          ->get();product
          *  
          *  SELECT * FROM customers
          */
@@ -62,5 +62,9 @@ class OrderController extends Controller
          *      DELETE FROM customers WHERE id=?
          */
         return Customer::destroy($id);
+    }
+
+    public function invoiceCustomer($id){
+        return view("layouts.invoice", ["data" => Order::with("customer")->with("product")->where("customer_id",$id)->get()]);
     }
 }

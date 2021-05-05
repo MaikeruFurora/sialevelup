@@ -1,6 +1,6 @@
 <div id="User_GuideDiv">
     <div class="row">
-        <div class="col-4">
+        <div class="col-lg-4 col-md-12 col-sm-12">
             <div class="card animated zoomIn" style="width: 20rem;">
                 <img src="{{ asset('img/undraw_my_files_swob.svg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -9,8 +9,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-8">
-            <h3 class="lead animated fadeInUp">How to use the System</h3>
+        <div class="col-lg-8 col-md-12 col-sm-12">
+            <h3 class="lead animated fadeInUp mt-2">How to use the System</h3>
             <ul class="list-unstyled mt-5">
                 <li class="media animated fadeInUp">
                     <img src="{{ asset('img/0c.png') }}" width="10%" class="mr-3" alt="...">

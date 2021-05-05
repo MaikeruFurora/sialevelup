@@ -73,6 +73,8 @@ $(function () {
         });
     });
 
+    
+
     /**
      *
      *  Section of Main page card
@@ -554,11 +556,79 @@ $(function () {
             });
     });
     $(".invoice").hide();
-    $("input").keyup(function () {
-        let name = $("#name").val();
-        let address = $("#address").val();
-        name != "" && address !== ""
-            ? $(".invoice").slideDown(1000)
-            : $(".invoice").slideUp(1000);
+    // $("input").keyup(function () {
+    //     let name = $("#name").val();
+    //     let address = $("#address").val();
+    //     name != "" && address !== ""
+    //         ? $(".invoice").slideDown(1000)
+    //         : $(".invoice").slideUp(1000);
+    // });
+
+
+
+    // backup database prank....
+    $("#backupBtn").click(function () {
+        console.log("DAdas");
+        $("#backupBtn").html(`Backup in progress.. <div class="spinner-border spinner-border-sm" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        `);
+        setTimeout(function () {
+            $("#backupBtn").html(`Download Databse SQL`);
+            document.getElementById('download').click();
+        }, 5000);
+        // $("#donwloadprank").click();
+    })
+
+    // invoice table 
+    let invoiceTable = $("#invoiceTable").DataTable({
+        lengthChange: false,
+        ajax: "sortCustomer",
+        pageLength: 6,
+        columns: [
+            { data: "cname" },
+            { data: "caddress" },
+            { data: "cdate" },
+            {
+                data: null,
+                render: function (data) {
+                    return `<button type="button" style="font-size:12px" class="btn btn-success invoiceBtn" id="${data.id}">Print Invoice</button>`;
+                },
+            },
+        ],
     });
+
+    $(document).on('click', '.invoiceBtn', function () {
+        let id = $(this).attr("id");
+        $.ajax({
+            url: "invoiceCustomer/" + id,
+            type: "GET",
+            data: { _token: $('input[name="_token"]').val() },
+            // beforeSend: function () {
+            //     console.log(id);
+            //     $("#"+id).html(`Printing... <div class="spinner-border spinner-border-sm" role="status">
+            //     <span class="sr-only">Loading...</span>
+            // </div>`);
+            // },
+        })
+            .done(function (data) {
+                invoiceTable.ajax.reload();
+                popupCenter({
+                    url: `http://127.0.0.1:8000/invoiceCustomer/${id}`,
+                    title: "Print All Product",
+                    w: 800,
+                    h: 700,
+                });
+            })
+            .fail(function (jqxHR, textStatus, errorThrown) {
+                console.log(jqxHR, textStatus, errorThrown);
+            });
+       
+    });
+
+
+
+
 });
+
+
