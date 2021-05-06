@@ -7,7 +7,7 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>Date of purchase</th>
-                <th>Action</th>
+                <th>Invoice</th>
             </tr>
         </thead>
         <tfoot>
@@ -15,7 +15,7 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>Date of purchase</th>
-                <th>Action</th>
+                <th>Invoice</th>
             </tr>
         </tfoot>
     </table>

@@ -23,7 +23,7 @@
             </div>
         </div>
       </div>
-      <table style="margin-top: -5px" width="100%" class="">
+      <table style="margin-top: -5px" width="100%" class="table table-borderless">
          
           <tr>
               <td width="10%" class=""><b class="ml-2">Name:</b></td>
@@ -44,7 +44,7 @@
             <tr>
                 <th>No.</th>
                 <th width="20%">Purchase Item</th>
-                <th>Descptions</th>
+                <th>Description</th>
                 <th width="11%">Quantity</th>
                 <th width="13%">Price</th>
                 <th width="13%">Amount</th>
@@ -84,7 +84,7 @@
         </tbody>
       </table>
       <div class="text-center">
-        <img class="mt-5" src="{{ asset('img/img.png') }}" alt="" width="50">
+        <img class="mt-4" src="{{ asset('img/img.png') }}" alt="" width="50">
         <h6 class="">Invoice<small>2021</small></h6>
         <small>If you have any enqueries concerning this <br> invoice, please contact us!</small>
       </div>

@@ -245,7 +245,7 @@ $(function () {
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <button type="button" class="btn btn-sm btn-danger cdelete" id="${val.id}">Delete</button>
-                                    <button type="button" class="btn btn-sm btn-primary cedit" id="${val.id}">Edit</button>
+                                    <button type="button" class="btn btn-sm btn-primary cedit pl-3 pr-3" id="${val.id}">Edit</button>
                                 </div>
                             </td>
                           </tr>`;
@@ -332,8 +332,8 @@ $(function () {
                 data: null,
                 render: function (data) {
                     return data.pstatus == "1"
-                        ? `<span class="badge badge-success">Active</span>`
-                        : `<span class="badge badge-danger">Inactive</span>`;
+                        ? `<span class="badge p-1 badge-success">Active</span>`
+                        : `<span class="badge p-1 badge-danger">Inactive</span>`;
                 },
             },
             {
@@ -341,7 +341,7 @@ $(function () {
                 render: function (data) {
                     return `<div class="btn-group" role="group" aria-label="Basic example">
                             <button type="button" style="font-size:12px" class="btn btn-sm btn-danger pdelete" id="${data.id}">Delete</button>
-                            <button type="button" style="font-size:12px" class="btn btn-sm btn-primary pedit" id="${data.id}">Edit</button>
+                            <button type="button" style="font-size:12px" class="btn btn-sm btn-primary pedit pl-3 pr-3" id="${data.id}">Edit</button>
                         </div>`;
                 },
             },
@@ -547,6 +547,7 @@ $(function () {
                 tableOrder();
                 tableProduct.ajax.reload();
                 CustomerTable.ajax.reload();
+                invoiceTable.ajax.reload();
                 document.getElementById("orderForm").reset();
                 console.log(data);
                 $(".invoice").slideUp(2000);
@@ -592,7 +593,7 @@ $(function () {
             {
                 data: null,
                 render: function (data) {
-                    return `<button type="button" style="font-size:12px" class="btn btn-success invoiceBtn" id="${data.id}">Print Invoice</button>`;
+                    return `<button type="button" style="font-size:12px" class="btn btn-success invoiceBtn" id="${data.id}">Print now</button>`;
                 },
             },
         ],
