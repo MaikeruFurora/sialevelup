@@ -107,25 +107,64 @@ $(function () {
     // }, 2000);
     let hold = "";
     const fieldNames = [
-        { field: "Category", color: "#F39893", font: "layers" },
-        { field: "Product", color: "#7C87A5", font: "view_quilt" },
-        { field: "Order", color: "#F5A572", font: "bubble_chart" },
-        { field: "Report", color: "#ABD194", font: "insert_chart" },
-        { field: "Customer", color: "#7AC2DA", font: "supervisor_account" },
-        { field: "Invoice", color: "#53BBB4", font: "streetview" },
-        { field: "Backup Database", color: "#99A6E1", font: "cloud_download" },
-        { field: "User Guide", color: "#E099D3", font: "style" },
+        { field: "Chart", color: "#D05247", font: "multiline_chart" },
+        { field: "Verified User", color: "#258190", font: "verified_user" },
+        { field: "Setting", color: "#185A72", font: "settings" },
+        { field: "Category", color: "#327152", font: "layers" },
+        { field: "Product", color: "#D05543", font: "view_quilt" },
+        { field: "Order", color: "#5C3F5B", font: "bubble_chart" },
+        { field: "Report", color: "#E65A37", font: "content_paste" },
+        { field: "Customer", color: "#E6A02C", font: "supervisor_account" },
+        { field: "Invoice", color: "#5F2E31", font: "streetview" },
+        { field: "Backup Database", color: "#7C8779", font: "cloud_download" },
+        { field: "User Guide", color: "#DD806F", font: "style" },
     ];
     // <img src="http://127.0.0.1:8000/img/${i}.png" width="40%">
     fieldNames.forEach((e, i) => {
-        hold += `<div class="col-lg-3 col-md-6 col-sm-6  mt-3 mb-3 animated fadeInUp">
-                <div class="card shadow card-hover text-center pt-4 btnAction hvr-grow" style="background:${e.color};width:100%" id="${e.field}">
-                    <div class="card-body">
-                    <span style="font-size:60px;color:#e6e6e6" class="ml-5 mr-5 material-icons">
+        hold += `<div class="col-lg-${e.field=='Chart'?'6':'3'} col-md-6 col-sm-6  mt-3 mb-3 animated fadeInUp" style="cursor:pointer">
+                <div class="card shadow card-hover text-center ${e.field=='Chart'?'pt-1':'pt-4'} btnAction ${e.field=='Chart'?'':'hvr-grow'}" style="background:${e.color};width:100%;padding-top:6px;" id="${e.field}">
+                    <div class="card-body ${e.field=='Chart'?'p-3':'p-4'}">
+                    
+                    ${e.field != 'Chart'
+                    ?
+                    `<span style="font-size:60px;color:#e6e6e6" class="ml-5 mr-5 material-icons">
                     ${e.font}
-                    </span>
+                    </span>`
+                    :
+                    `
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <img src="img/plan.svg" width="97%" alt="">
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                        <ul class="list-group text-white text-monospace">
+                            <li class="hvr-grow list-group-item d-flex justify-content-between align-items-center  border" style="font-size:13px;background:#D05543">
+                            Total of no. Product
+                            <span class="badge badge-info text-white badge-pill">1,150</span>
+                            </li>
+                            <li class="hvr-grow list-group-item d-flex justify-content-between align-items-center border  mt-1 mb-1" style="font-size:13px;background:#D05543">
+                            Number Verified users
+                            <span class="badge badge-info text-white badge-pill">3</span>
+                            </li>
+                            <li class="hvr-grow list-group-item d-flex justify-content-between align-items-center border" style="font-size:13px;background:#D05543">
+                            Total of no. Category
+                            <span class="badge badge-info text-white badge-pill">10</span>
+                            </li>
+                        </ul>
+                        </div>
                     </div>
-                        <button type="button" style="background:rgb(108, 117, 125,0.7);color:white" class="btn btn-sm btn-block pt-2 pb-2">${e.field}</button>
+                    `
+                    }
+
+                    </div>
+                    ${e.field != 'Chart'
+                    ?
+                    `<button type="button" style="background:#333333;color:white;border-top:white" class="btn btn-sm btn-block pt-2 pb-2 text-monospace">
+                        <b>${e.field}</b>
+                    </button>`
+                    : ``
+                    }
+                        
                 </div>
             </div>`;
     });
@@ -133,50 +172,63 @@ $(function () {
         $("#showData").html(hold);
     }, 2000);
 
+
+    
     $(document).on("click", ".btnAction", function () {
         let data = $(this).attr("id");
         let separate = data.split("_");
         let ddd = separate[0].split(" ").join("_");
         console.log(ddd);
         switch (ddd) {
+           
             case "Category":
                 $(".dialogs")
                     .removeClass("modal-xl modal-lg")
                     .addClass("modal-sm");
                 break;
+            case "Verified_User":
+                $(".dialogs")
+                .removeClass("modal-md modal-xl modal-sm")
+                .addClass("modal-lg");
+                break;
+            case "Setting":
+                $(".dialogs")
+                    .removeClass("modal-md modal-lg modal-sm")
+                    .addClass("modal-xl");
+                break;
             case "Product":
                 $(".dialogs")
-                    .removeClass("modal-md modal-lg")
+                    .removeClass("modal-md modal-lg modal-sm")
                     .addClass("modal-xl");
                 break;
             case "Order":
                 $(".dialogs")
-                    .removeClass("modal-md modal-lg")
+                    .removeClass("modal-md modal-lg modal-sm")
                     .addClass("modal-xl");
                 break;
             case "Report":
                 $(".dialogs")
-                    .removeClass("modal-xl modal-lg")
-                    .addClass("modal-sm");
+                    .removeClass("modal-xl modal-lg modal-sm")
+                    .addClass("modal-md");
                 break;
             case "Customer":
                 $(".dialogs")
-                    .removeClass("modal-md modal-xl")
+                    .removeClass("modal-md modal-xl modal-sm")
                     .addClass("modal-lg");
                 break;
             case "Invoice":
                 $(".dialogs")
-                    .removeClass("modal-md modal-lg")
+                    .removeClass("modal-md modal-xl modal-sm")
                     .addClass("modal-lg");
                 break;
             case "User_Guide":
                 $(".dialogs")
-                    .removeClass("modal-md modal-lg")
+                    .removeClass("modal-md modal-lg modal-sm")
                     .addClass("modal-xl");
                 break;
             case "Backup_Database":
                 $(".dialogs")
-                    .removeClass("modal-xl modal-lg")
+                    .removeClass("modal-xl modal-lg modal-md")
                     .addClass("modal-sm");
                 break;
             default:
@@ -189,11 +241,17 @@ $(function () {
         // });
         fieldNames.map((val) => {
             let fieldNow = val.field.split(" ").join("_");
-            fieldNow == ddd
-                ? $("#" + fieldNow + "Div").show()
-                : $("#" + fieldNow + "Div").hide();
+            if(fieldNow == ddd){
+                $("#" + fieldNow + "Div").show();
+                $(".modal-header").css('background-color', val.color);
+            }else {
+                $("#" + fieldNow + "Div").hide();
+            }
+            
+            // console.log(ddd);
         });
-        OpenModal(separate[0], separate[1], data);
+        if(data!="Chart")
+            OpenModal(separate[0], separate[1], data);
         // console.log(data);
         // $(".targetForm").attr("id", separate[0] + "Form");
     });
@@ -244,8 +302,16 @@ $(function () {
                             <td>${val.cname}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-sm btn-danger cdelete" id="${val.id}">Delete</button>
-                                    <button type="button" class="btn btn-sm btn-primary cedit pl-3 pr-3" id="${val.id}">Edit</button>
+                                    <button type="button" class="btn btn-sm btn-danger pl-2 pr-2 cdelete" id="${val.id}">
+                                        <span style="font-size:17px;color:#e6e6e6" class="material-icons">
+                                            delete_forever
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-primary pl-2 pr-2 cedit" id="${val.id}">
+                                        <span style="font-size:17px;color:#e6e6e6" class="material-icons">
+                                            edit
+                                        </span>
+                                    </button>
                                 </div>
                             </td>
                           </tr>`;
@@ -541,8 +607,17 @@ $(function () {
                 grossAmount: $("#grossAmount").val(),
                 orders: arrayproduct,
             },
+            beforeSend: function () {
+                $('#btnOrder').html(`
+                  Processing...
+                  <div class="spinner-border spinner-border-sm" role="status">
+                      <span class="sr-only">Loading...</span>
+                  </div>
+                `);
+              }
         })
             .done(function (data) {
+                $("#btnOrder").html('Submit');
                 arrayproduct.splice(0, arrayproduct.length);
                 tableOrder();
                 tableProduct.ajax.reload();
@@ -593,7 +668,9 @@ $(function () {
             {
                 data: null,
                 render: function (data) {
-                    return `<button type="button" style="font-size:12px" class="btn btn-success invoiceBtn" id="${data.id}">Print now</button>`;
+                    return `<button type="button" style="font-size:12px" class="btn btn-info btn-block btn-sm invoiceBtn" id="${data.id}">
+                    Print
+                    </button>`;
                 },
             },
         ],
@@ -617,8 +694,8 @@ $(function () {
                 popupCenter({
                     url: `http://127.0.0.1:8000/invoiceCustomer/${id}`,
                     title: "Print All Product",
-                    w: 850,
-                    h: 800,
+                    w: 900,
+                    h: 1000,
                 });
             })
             .fail(function (jqxHR, textStatus, errorThrown) {

@@ -2,16 +2,16 @@
     <div class="row">
         <div class="col-lg-3 col-md-12 col-sm-12">
             <form id="orderForm">@csrf
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-body">
                         <form>
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" id="name" class="form-control" autocomplete="off">
+                                <input type="text" id="name" class="form-control" required autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label>Address</label>
-                                <input type="text" id="address" class="form-control" autocomplete="off">
+                                <input type="text" id="address" class="form-control" required autocomplete="off">
                             </div>
                             <hr>
                             <div class="form-group">
@@ -28,13 +28,13 @@
                     </div>
                     <div class="card-footer p-1">
                         <button type="button" class="btn btn-warning btn-block btn-sm invoice">Invoice</button>
-                        <button type="submit" class="btn btn-primary btn-block btn-sm">Submit</button>
+                        <button type="submit" id="btnOrder" class="btn btn-primary btn-block btn-sm">Submit</button>
                     </div>
                 </div>
             </form>
         </div>
         <div class="col-lg-9 col-md-12 col-sm-12">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body p-2">
                     <div class="form-row">
                         <div class="col-lg-3 col-md-12 col-sm-12">
