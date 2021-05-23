@@ -1,44 +1,35 @@
 <div id="Verified_UserDiv">
-    <h1 class="lead text-monospace">List of Employees</h1>
-    <form action="">
+    <h1 class="lead text-monospace">List of Employees</h1><hr>
+    <form id="verifiedForm">@csrf
+        <input type="hidden" name="id" id="uid">
+        <input type="hidden" name="email" value={{ rand(50,100)."-".rand(50,100)."@test.com" }}>
         <div class="form-row mt-3">
-            <div class="form-group col-lg-3 col-md-12 col-sm-12">
-              <input type="email" class="form-control" id="inputEmail4" placeholder="Name of employee">
+          
+            <div class="form-group col-lg-5 col-md-12 col-sm-12">
+              <small>Name of Employee</small>
+              <input type="text" class="form-control" id="uname" name="name" required >
             </div>
-            <div class="form-group col-lg-3 col-md-12 col-sm-12">
-              <input type="password" class="form-control" id="inputPassword4" placeholder="Username">
+            <div class="form-group col-lg-5 col-md-12 col-sm-12">
+              <small>Username</small>
+              <input type="text" class="form-control" id="uusername" name="username" required >
             </div>
-            <div class="form-group col-lg-3 col-md-12 col-sm-12">
-                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-            </div>
-            <div class="form-group col-lg-3 col-md-12 col-sm-12">
-                <button class="btn btn-info btn-block">Submit</button>
+            <div class="form-group col-lg-2 col-md-12 col-sm-12">
+              <small>&nbsp;</small>
+                <button type="submit" class="btn btn-info btn-block">Submit</button>
             </div>
         </div>
     </form>
    <div class="table-responsive">
-    <table class="table mt-3 table-bordered">
+    <table class="table table-sm mt-3 table-bordered">
       <thead>
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Fullname</th>
-          <th scope="col">Username</th>
-          <th scope="col">Password</th>
+          <th scope="col" width="10%">#</th>
+          <th scope="col" width="40%">Fullname</th>
+          <th scope="col" width="40%">Username</th>
+          <th scope="col" width="10%">Action</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>User-mark</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>User-Jacob</td>
-          <td>@fat</td>
-        </tr>
+      <tbody id="tableVerfiedUser">
       </tbody>
     </table>
    </div>

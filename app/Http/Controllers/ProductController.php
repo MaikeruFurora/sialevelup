@@ -45,6 +45,11 @@ class ProductController extends Controller
         return response()->json($product); // SELECT * FROM products
     }
 
+    public function show1($pcode)
+    {
+        return response()->json(Product::where('pcode',$pcode)->get()); // SELECT * FROM products
+    }
+
     public function destroy($id)
     {
         return Product::destroy($id); // DELETE FROM products WHERE id=?

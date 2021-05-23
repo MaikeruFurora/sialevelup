@@ -33,6 +33,12 @@
     <script src="{{ asset('js/qrious.min.js') }}"></script>
     <script src="{{ asset('js/chart.min.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
+    <style>
+        .borderInput{
+            border-style:solid;
+            border-width:medium;
+        }
+    </style>
 </head>
 
 <body>
@@ -67,22 +73,21 @@
                         </li>
                         @endif
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button"
+                        <li class="nav-item">
+                            <input type="hidden" id="user_type" value="{{ Auth::user()->user_type }}">
+                            <a id="navbarDropdown" class="nav-link text-white" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->name }} | <span class="badge badge-pill badge-primary">{{ Auth::user()->user_type==1?'Admin':'Employee' }}</span>
                             </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <span class="material-icons text-white" style="font-size: 20px">power_settings_new</span>
+                            </a>
                         </li>
                         @endguest
                     </ul>
@@ -95,6 +100,17 @@
             @yield('content')
         </main>
     </div>
+
+    {{-- modal ORDER only for testing messages --}}
+    <div class="modal fade animated bounce" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog mdal-md modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body pb-1 bg-dark text-white text-monospace">
+                  <h4 class="text-center addTextMsg"></h4>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 
 

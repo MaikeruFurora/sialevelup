@@ -120,7 +120,9 @@ $(function () {
         { field: "User Guide", color: "#DD806F", font: "style" },
     ];
     // <img src="http://127.0.0.1:8000/img/${i}.png" width="40%">
-    fieldNames.forEach((e, i) => {
+    let user_type = $("#user_type").val();
+    const newFields = user_type==0?fieldNames.filter((val, i)=>i!=1 && i!=9 && i!=6 && i!=7):fieldNames
+    newFields.forEach((e, i) => {
         hold += `<div class="col-lg-${e.field=='Chart'?'6':'3'} col-md-6 col-sm-6  mt-3 mb-3 animated fadeInUp" style="cursor:pointer">
                 <div class="card shadow card-hover text-center ${e.field=='Chart'?'pt-1':'pt-4'} btnAction ${e.field=='Chart'?'':'hvr-grow'}" style="background:${e.color};width:100%;padding-top:6px;" id="${e.field}">
                     <div class="card-body ${e.field=='Chart'?'p-3':'p-4'}">
@@ -205,6 +207,7 @@ $(function () {
                 $(".dialogs")
                     .removeClass("modal-md modal-lg modal-sm")
                     .addClass("modal-xl");
+                
                 break;
             case "Report":
                 $(".dialogs")
@@ -259,8 +262,114 @@ $(function () {
     let OpenModal = (name, action, complete) => {
         $("#staticBackdrop").modal("show");
         $("#staticBackdropLabel").text(name);
+        name=="Order"?$("#enteredBarcode").focus().addClass("borderInput"):''
     };
 
+
+/*
+*
+ this area for verfied user development only
+
+*/
+
+$("#verifiedForm").on("submit", function (e) {
+    e.preventDefault();
+    $.ajax({
+        url: "/user",
+        type: "POST",
+        contentType: false,
+        processData: false,
+        cache: false,
+        data: new FormData(this),
+    })
+        .done(function (data) {
+            getVerifiedUser();
+            document.getElementById("verifiedForm").reset();
+        })
+        .fail(function (jqxHR, textStatus, errorThrown) {
+            console.log(jqxHR, textStatus, errorThrown);
+        });
+});
+    
+    let getVerifiedUser = () => {
+        let thold = "";
+        let i = 1;
+        $.ajax({
+            url: "/getUser",
+            type: "GET",
+            dataType: "json",
+        })
+            .done(function (data) {
+                // console.log(data);
+                data.forEach((val) => {
+                    thold += `<tr>
+                            <td>${i++}</td>
+                            <td>${val.name}</td>
+                            <td>${val.username}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-sm btn-danger pl-2 pr-2 udelete" id="${val.id}">
+                                        <span style="font-size:17px;color:#e6e6e6" class="material-icons">
+                                            delete_forever
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-primary pl-2 pr-2 uedit" id="${val.id}">
+                                        <span style="font-size:17px;color:#e6e6e6" class="material-icons">
+                                            edit
+                                        </span>
+                                    </button>
+                                </div>
+                            </td>
+                          </tr>`;
+                });
+                $("#tableVerfiedUser").html(thold);
+            })
+            .fail(function (jqxHR, textStatus, errorThrown) {
+                console.log(jqxHR, textStatus, errorThrown);
+            });
+    }
+
+    getVerifiedUser();
+
+    $(document).on("click", ".uedit", function () {
+        let id = $(this).attr("id");
+        $.ajax({
+            url: "userEdit/" + id,
+            type: "GET",
+            data: { _token: $('input[name="_token"]').val() },
+            beforeSend: function () {
+                $("#" + id).html(`
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>`);
+            }
+        })
+            .done(function (data) {
+                $("#uname").val(data.name);
+                $("#uusername").val(data.username);
+                $("#upassword").val("password");
+                $("#uid").val(data.id);
+            })
+            .fail(function (jqxHR, textStatus, errorThrown) {
+                console.log(jqxHR, textStatus, errorThrown);
+            });
+    });
+
+    $(document).on("click", ".udelete", function () {
+        let id = $(this).attr("id");
+        $.ajax({
+            url: "/userDelete/" + id,
+            type: "DELETE",
+            data: { _token: $('input[name="_token"]').val() },
+        })
+            .done(function (data) {
+                getVerifiedUser();
+            })
+            .fail(function (jqxHR, textStatus, errorThrown) {
+                console.log(jqxHR, textStatus, errorThrown);
+            });
+    });
+    
     /*
 
  this are for category development only 
@@ -487,6 +596,7 @@ $(function () {
      * For order development only
      *
      */
+    
     let quantiyHold = null;
     let idHold = null;
     let nameHold = null;
@@ -527,12 +637,64 @@ $(function () {
                 console.log(jqxHR, textStatus, errorThrown);
             });
     });
+
+    //barcode scanned
+    $("#enteredBarcode").change(function () {
+        $.ajax({
+            url: "Product-show1/" + $(this).val(),
+            type: "POST",
+            dataType: "json",
+            data: { _token: $('input[name="_token"]').val() },
+        })
+            .done(function (data) {
+                if (data[0] != undefined) {
+
+                    if (data[0].pquantity != 0) {
+                        if (arrayproduct.find((val) => val.id == idHold)) {
+                            $(".addTextMsg").text("Already Added this Item!");
+                            $("#exampleModalCenter").modal("show")
+                            setTimeout(function () {
+                                $("#exampleModalCenter").modal("hide")
+                                $("#enteredBarcode").focus().val("").addClass("borderInput");
+                            }, 3000);
+                        } else {
+                            $("#enteredQuantity").focus().addClass("borderInput");
+                            $("#origPrice").val(data[0].pprice);
+                            quantiyHold = data[0].pquantity;
+                            priceHold = data[0].pprice;
+                            idHold = data[0].id;
+                            nameHold = data[0].pname;
+                        }
+                    } else {
+                        $(".addTextMsg").text("Sorry, out of Stock this item")
+                        $("#exampleModalCenter").modal("show")
+                        setTimeout(function () {
+                            $("#exampleModalCenter").modal("hide")
+                            $("#enteredBarcode").focus().val("").removeClass("borderInput");
+                        }, 3000);
+                    }
+
+                } else {
+                    $(".addTextMsg").text("No product found!");
+                    $("#exampleModalCenter").modal("show")
+                    setTimeout(function () {
+                        $("#exampleModalCenter").modal("hide")
+                        $("#enteredBarcode").focus().val("").addClass("borderInput");
+                    }, 3000);
+                }
+            })
+            .fail(function (jqxHR, textStatus, errorThrown) {
+                console.log(jqxHR, textStatus, errorThrown);
+            });
+    });
+    //--------------/
+
     $("#enteredQuantity").keyup(function () {
         let enteredQuantity = parseInt(
             isNaN($(this).val()) ? 0 : $(this).val()
         );
         enteredQuantity > quantiyHold
-            ? confirm("Sorry, over quanity entered!")
+            ? confirm("Sorry, over quantity entered!")
             : $("#computedAmount").val(enteredQuantity * priceHold);
     });
     const arrayproduct = [];
@@ -566,7 +728,10 @@ $(function () {
         } else {
             if (arrayproduct.find((val) => val.id == idHold)) {
                 confirm("Already Added this Item!");
+                $("#enteredBarcode").val("").focus().addClass("borderInput");
             } else {
+                $("#enteredBarcode").val("").focus().addClass("borderInput");
+                $("#enteredQuantity").removeClass("borderInput");
                 arrayproduct.push({
                     id: idHold,
                     pname: nameHold,
@@ -585,6 +750,7 @@ $(function () {
         }
     });
     $(document).on("click", ".odelete", function () {
+        $("#enteredBarcode").focus().val("").addClass("borderInput");
         let i = $(this).attr("id");
         arrayproduct.splice(i, 1);
         tableOrder();

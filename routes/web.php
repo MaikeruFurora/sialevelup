@@ -31,6 +31,7 @@ Route::get('/getProductOption', 'ProductController@getoption');
 Route::post('/Product', 'ProductController@store');
 Route::delete('/Product-delete/{id}', 'ProductController@destroy');
 Route::post('/Product-show/{product}', 'ProductController@show');
+Route::post('/Product-show1/{pcode}', 'ProductController@show1');
 Route::post('/Order-post', 'OrderController@store');
 Route::get('/sortCustomer', 'OrderController@sortCustomer');
 Route::delete('/deleteCustomer/{id}', 'OrderController@deleteCustomer');
@@ -38,4 +39,9 @@ Route::get('/invoiceCustomer/{id}', 'OrderController@invoiceCustomer');
 // Route::get('/invoice', 'OrderController@invoice');
 Route::get('/print', 'ProductController@print');
 Route::get('/print1', 'ProductController@print1');
+#admin controller
+Route::post('/user','AdminController@store');
+Route::get('/getUser','AdminController@getUser');
+Route::get('/userEdit/{id}','AdminController@edit');
+Route::delete('/userDelete/{id}','AdminController@destroy');
 

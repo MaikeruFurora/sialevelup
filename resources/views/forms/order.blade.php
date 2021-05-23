@@ -37,21 +37,25 @@
             <div class="card shadow">
                 <div class="card-body p-2">
                     <div class="form-row">
+                        <div class="col-lg-2 col-md-12 col-sm-12">
+                            <input type="text" required class="form-control form-control-sm my-1" id="enteredBarcode"
+                                placeholder="Barcode">
+                        </div>
                         <div class="col-lg-3 col-md-12 col-sm-12">
-                            <select class="form-control form-control-sm" id="selectProduct" data-live-search="true"
+                            <select class="form-control form-control-sm my-1" id="selectProduct" data-live-search="true"
                                 placeholder="Choose Product" data-size="5">
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-12 col-sm-12">
-                            <input type="text" class="form-control form-control-sm" id="origPrice" placeholder="Price"
+                            <input type="text" class="form-control form-control-sm my-1" id="origPrice" placeholder="Price"
                                 readonly>
                         </div>
-                        <div class="col-lg-3 col-md-12 col-sm-12">
-                            <input type="number" required class="form-control form-control-sm" id="enteredQuantity"
+                        <div class="col-lg-2 col-md-12 col-sm-12">
+                            <input type="number" required class="form-control form-control-sm my-1" id="enteredQuantity"
                                 placeholder="Enter Quantity">
                         </div>
-                        <div class="col-lg-3 col-md-12 col-sm-12">
-                            <div class="input-group input-group-sm mb-3">
+                        <div class="col-lg-2 col-md-12 col-sm-12">
+                            <div class="input-group input-group-sm mb-3  my-1">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">₱</span>
                                 </div>
@@ -60,7 +64,7 @@
                             </div>
                         </div>
                         <div class="col-lg-1 col-md-12 col-sm-12">
-                            <button class="btn btn-primary btn-block btn-sm btnSave">+</button>
+                            <button class="btn btn-primary btn-block btn-sm btnSave  my-1"><b>+</b></button>
                         </div>
                     </div>
                 </div>
