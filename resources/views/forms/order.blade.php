@@ -1,21 +1,29 @@
 <div id="OrderDiv">
     <div class="row">
         <div class="col-lg-3 col-md-12 col-sm-12">
+            {{-- <div class="card mb-1">
+                <div class="card-body">
+
+                </div>
+            </div> --}}
             <form id="orderForm">@csrf
-                <div class="card shadow">
+                <div class="card shadow-lg">
+                    <div class="card-header p-1 text-center bg-dark text-white">
+                        <small>Customer Details</small>
+                    </div>
                     <div class="card-body">
                         <form>
                             <div class="form-group">
-                                <label>Name</label>
+                                <small>Customer name</small>
                                 <input type="text" id="name" class="form-control" required autocomplete="off">
                             </div>
                             <div class="form-group">
-                                <label>Address</label>
+                                <small>Customer address</small>
                                 <input type="text" id="address" class="form-control" required autocomplete="off">
                             </div>
                             <hr>
                             <div class="form-group">
-                                <label for="">Gross Amount</label>
+                                <small for="">Gross Amount</small>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">₱</span>
@@ -28,7 +36,7 @@
                     </div>
                     <div class="card-footer p-1">
                         <button type="button" class="btn btn-warning btn-block btn-sm invoice">Invoice</button>
-                        <button type="submit" id="btnOrder" class="btn btn-primary btn-block btn-sm">Submit</button>
+                        <button type="submit" id="btnOrder" class="btn btn-info btn-block btn-sm mt-0">Submit</button>
                     </div>
                 </div>
             </form>
@@ -68,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <table class="table text-center">
+                <table class="table text-center" style="font-size: 13px">
                     <thead>
                         <tr>
                             <th scope="col">Product</th>
@@ -78,6 +86,9 @@
                         </tr>
                     </thead>
                     <tbody class="tableOrder">
+                        <tr>
+                            <td colspan="4" class="text-center">No product selected</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

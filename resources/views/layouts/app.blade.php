@@ -38,6 +38,14 @@
             border-style:solid;
             border-width:medium;
         }
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            /* background-color:rgb(255, 153, 0,0.1); */
+        }
+
     </style>
 </head>
 
@@ -77,7 +85,7 @@
                             <input type="hidden" id="user_type" value="{{ Auth::user()->user_type }}">
                             <a id="navbarDropdown" class="nav-link text-white" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }} | <span class="badge badge-pill badge-primary">{{ Auth::user()->user_type==1?'Admin':'Employee' }}</span>
+                                {{ Auth::user()->name }} &nbsp;&nbsp; <span class="badge badge-pill badge-primary">{{ Auth::user()->user_type==1?'Admin':'Employee' }}</span>
                             </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -111,6 +119,16 @@
           </div>
         </div>
       </div>
+      <div class="footer text ">
+        <div class="container">
+            <div class="d-flex flex-row bd-highlight  animated fadeInUp">
+                <div class="p-2 bd-highlight"><small>This project created by <em>Team Avengers</em></small></div>
+                <div class="p-2 bd-highlight"><small>|&nbsp;&nbsp;&nbsp; Bootstrap <b>&middot;</b> Jquery <b>&middot;</b>
+                        Animated Effects</small>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 

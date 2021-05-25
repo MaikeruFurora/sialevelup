@@ -16,13 +16,13 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </head>
 
-<body style="background: white">
+<body style="background: #052747;color:white">
     <div class="container">
 
 
         <form class="form-signin" method="POST" action="{{ route('login') }}">@csrf
             <div class="text-center mb-4 text-monospace" style="color: ">
-              <img class="mb-4" src="{{ asset('img/img.png') }}" alt="" width="140" height="130">
+              <img class="mb-4" src="{{ asset('img/logos.png') }}" alt="" width="140" height="133">
               <h1 class="h3      font-weight-normal">Inventory Management System</h1>
               <small>Ely's Electronic Service Center</small>
             </div>
@@ -60,7 +60,7 @@
                 </label>
             </div>
       
-            <button class="btn btn-lg btn-primary btn-block" style="background-color: ;" type="submit">Log In</button>
+            <button class="btn btn-lg btn-info btn-block" style="background-color: ;" type="submit">Log In</button>
             <p class="mt-5 mb-3 text-muted text-center">&copy; {{date("Y")}} - Project of Team Avengers</p>
         </form>
         {{-- <div class="row justify-content-center" style="position: fixed;

@@ -45,4 +45,28 @@
             </ul>
         </div>
     </div>
+
+    <div class="row mt-4 mr-3">
+        <div class="col-lg-5 col-md-12 col-sm-12 animated fadeInUp">
+            <p>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                 Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
+                 Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
+            </p>
+        </div>
+        <div class="col-lg-5 col-md-12 col-sm-12 animated fadeInUp">
+            <p>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                 Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
+                 Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
+            </p>
+        </div>
+        <div class="col-lg-2 col-md-12 col-sm-12 animated fadeInUp">
+            <div class="card">
+                <div class="card-body p-0">
+                    <img src="{{ asset("img/scannig.png") }}" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

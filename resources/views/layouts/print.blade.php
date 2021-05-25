@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col-3 text-center">
-        <img class="mt-4" src="{{ asset('img/a.png') }}" alt="" width="30%">
+        <img class="mt-4" src="{{ asset('img/logos.png') }}" alt="" width="50%">
     </div>
     <div class="col-6">
         <div class="text-center mt-5">

@@ -33,12 +33,12 @@
             <div class="row" id="showData2"></div>
         </div>
     </div>
-    <div class="d-flex flex-row bd-highlight mb-3 mt-3 animated fadeInUp">
+    {{-- <div class="d-flex flex-row bd-highlight mb-3 mt-3 animated fadeInUp">
         <div class="p-2 bd-highlight"><small>This project created by <em>Team Avengers</em></small></div>
         <div class="p-2 bd-highlight"><small>|&nbsp;&nbsp;&nbsp; Bootstrap <b>&middot;</b> Jquery <b>&middot;</b>
                 Animated Effects</small>
         </div>
-    </div>
+    </div> --}}
 </div>
 @include('layouts.modal')
 @endsection

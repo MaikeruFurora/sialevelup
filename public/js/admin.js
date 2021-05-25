@@ -123,7 +123,7 @@ $(function () {
     let user_type = $("#user_type").val();
     const newFields = user_type==0?fieldNames.filter((val, i)=>i!=1 && i!=9 && i!=6 && i!=7):fieldNames
     newFields.forEach((e, i) => {
-        hold += `<div class="col-lg-${e.field=='Chart'?'6':'3'} col-md-6 col-sm-6  mt-3 mb-3 animated fadeInUp" style="cursor:pointer">
+        hold += `<div class="col-lg-${e.field=='Chart'?'6':'3'} col-md-6 col-sm-6  mt-3 mb-3 animated fadeIn" style="cursor:pointer">
                 <div class="card shadow card-hover text-center ${e.field=='Chart'?'pt-1':'pt-4'} btnAction ${e.field=='Chart'?'':'hvr-grow'}" style="background:${e.color};width:100%;padding-top:6px;" id="${e.field}">
                     <div class="card-body ${e.field=='Chart'?'p-3':'p-4'}">
                     
@@ -145,7 +145,7 @@ $(function () {
                             <span class="badge badge-info text-white badge-pill">1,150</span>
                             </li>
                             <li class="hvr-grow list-group-item d-flex justify-content-between align-items-center border  mt-1 mb-1" style="font-size:13px;background:#D05543">
-                            Number Verified users
+                            No. of Verified users
                             <span class="badge badge-info text-white badge-pill">3</span>
                             </li>
                             <li class="hvr-grow list-group-item d-flex justify-content-between align-items-center border" style="font-size:13px;background:#D05543">
@@ -706,7 +706,7 @@ $("#verifiedForm").on("submit", function (e) {
             <td>${val.pname}</td>
             <td>${val.myqty}</td>
             <td>${val.total}</td>
-            <td><button class="btn btn-sm btn-danger odelete" id="${i}">X</button></td>
+            <td><button class="btn btn-sm btn-danger odelete pt-0" id="${i}">x</button></td>
             </tr>`;
               })
             : (e = `<tr><td colspan="4">No product selected</td></tr>`);
@@ -724,7 +724,12 @@ $("#verifiedForm").on("submit", function (e) {
             enteredQuantity == "" &&
             computedAmount == ""
         ) {
-            confirm("Pleas Attach atleast one product");
+            $(".addTextMsg").text("Please Attach atleast one product")
+            $("#exampleModalCenter").modal("show")
+            setTimeout(function () {
+                $("#exampleModalCenter").modal("hide")
+                $("#enteredBarcode").focus().val("").removeClass("borderInput");
+            }, 3000);
         } else {
             if (arrayproduct.find((val) => val.id == idHold)) {
                 confirm("Already Added this Item!");
@@ -759,7 +764,7 @@ $("#verifiedForm").on("submit", function (e) {
         let vals = arrayproduct.reduce((acc, val) => {
             return (acc += parseInt(val.total));
         }, 0);
-        $("#grossAmount").val(vals);
+        $("#grossAmount").val((vals!=0)?vals:'');
     };
     $("#orderForm").on("submit", function (e) {
         e.preventDefault();
