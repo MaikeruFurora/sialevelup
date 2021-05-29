@@ -84,7 +84,7 @@
         </tbody>
       </table>
       <div class="text-center">
-        <img class="mt-4" src="{{ asset('img/img.png') }}" alt="" width="50">
+        <img class="mt-4" src="{{ asset('img/logos.png') }}" alt="" width="50">
         <h6 class="">Invoice<small>2021</small></h6>
         <small>If you have any enqueries concerning this <br> invoice, please contact us!</small>
       </div>

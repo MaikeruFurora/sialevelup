@@ -570,6 +570,7 @@ $("#verifiedForm").on("submit", function (e) {
         })
             .done(function (data) {
                 CustomerTable.ajax.reload();
+                invoiceTable.ajax.reload();
             })
             .fail(function (jqxHR, textStatus, errorThrown) {
                 console.log(jqxHR, textStatus, errorThrown);
