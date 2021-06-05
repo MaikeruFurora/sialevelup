@@ -16,13 +16,13 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </head>
 
-<body style="background: #052747;color:white">
+<body style="background: #0678BE;color:white">
     <div class="container">
 
 
         <form class="form-signin" method="POST" action="{{ route('login') }}">@csrf
             <div class="text-center mb-4 text-monospace" style="color: ">
-              <img class="mb-4" src="{{ asset('img/logos.png') }}" alt="" width="140" height="133">
+              <img class="mb-4" src="{{ asset('img/logos.png') }}" alt="" width="125" height="120">
               <h1 class="h3      font-weight-normal">Inventory Management System</h1>
               <small>Ely's Electronic Service Center</small>
             </div>
@@ -61,44 +61,8 @@
             </div>
       
             <button class="btn btn-lg btn-info btn-block" style="background-color: ;" type="submit">Log In</button>
-            <p class="mt-5 mb-3 text-muted text-center">&copy; {{date("Y")}} - Project of Team Avengers</p>
+            <p class="mt-5 mb-3 text-center">&copy; {{date("Y")}} - Project of Team Avengers</p>
         </form>
-        {{-- <div class="row justify-content-center" style="position: fixed;
-            width:50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);">
-            <div class="col-lg-5">
-                <form method="POST" action="{{ route('login') }}">@csrf
-                    <div class="card animated pulse">
-                        <div class="card-header p-4 text-center" style="background: white">LOGIN TO PROCEED</div>
-                        <div class="card-body">
-                            <div class="mb-3 text-center">
-                                Making your life sweeter one bite at a time!<br>{{ date("M d Y")}}.
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                
-                            </div>
-                            
-                        </div>
-                        <div class="card-footer p-1">
-                            <button type="submit" class="btn btn-secondary btn-block">Login</button>
-
-                        </div>
-                </form>
-            </div>
-        </div> --}}
-        {{-- <div class="col-lg-7 text-center">
-            <h1 class="lead" style="font-size: 1.5em">Inventory Management System</h3>
-                <img class="animated pulse" src="{{ asset('img/support.svg') }}" width="90%">
-                <br><br>
-                <small class="mt-5">&copy; {{date("Y")}} - Project of Team Avengers </small>
-        </div> --}}
     </div>
 </body>
 

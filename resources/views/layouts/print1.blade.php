@@ -9,7 +9,7 @@
         <tr>
             <td>Identifier</td>
             <td>Description</td>
-            <td>Quantity</td>
+            {{-- <td>Quantity</td> --}}
             <td>Price</td>
         </tr>
     </thead>
@@ -18,7 +18,7 @@
         <tr>
             <td>{{$product->pname}}</td>
             <td>{{$product->pdescription}}</td>
-            <td>{{$product->pquantity}}</td>
+            {{-- <td>{{$product->pquantity}}</td> --}}
             <td>{{$product->pprice}}</td>
         </tr>
         @empty

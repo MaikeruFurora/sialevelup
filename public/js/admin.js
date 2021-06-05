@@ -124,7 +124,8 @@ $(function () {
     const newFields = user_type==0?fieldNames.filter((val, i)=>i!=1 && i!=9 && i!=6 && i!=7):fieldNames
     newFields.forEach((e, i) => {
         hold += `<div class="col-lg-${e.field=='Chart'?'6':'3'} col-md-6 col-sm-6  mt-3 mb-3 animated fadeIn" style="cursor:pointer">
-                <div class="card shadow card-hover text-center ${e.field=='Chart'?'pt-1':'pt-4'} btnAction ${e.field=='Chart'?'':'hvr-grow'}" style="background:${e.color};width:100%;padding-top:6px;" id="${e.field}">
+                <div class="card shadow card-hover text-center ${e.field == 'Chart' ? 'pt-1' : 'pt-4'} btnAction ${e.field == 'Chart' ? '' : 'hvr-grow'}" 
+                    style="background:${e.color};width:100%;padding-top:6px;" id="${e.field}">
                     <div class="card-body ${e.field=='Chart'?'p-3':'p-4'}">
                     
                     ${e.field != 'Chart'
@@ -161,18 +162,23 @@ $(function () {
                     </div>
                     ${e.field != 'Chart'
                     ?
-                    `<button type="button" style="background:#333333;color:white;border-top:white" class="btn btn-sm btn-block pt-2 pb-2 text-monospace">
+                    `
+                    <div class="card-footer text-monospace p-2" style="background:#333333;color:white;border-top:white">
                         <b>${e.field}</b>
-                    </button>`
+                    </div>
+                   `
                     : ``
                     }
-                        
+                       
                 </div>
             </div>`;
     });
+
+    $("#showData").html(hold).hide();
     setTimeout(() => {
-        $("#showData").html(hold);
-    }, 2000);
+        $(".centerSpinner").removeClass('spinner-grow');
+        $("#showData").html(hold).fadeIn();
+    }, 3000);
 
 
     
@@ -211,8 +217,8 @@ $(function () {
                 break;
             case "Report":
                 $(".dialogs")
-                    .removeClass("modal-xl modal-lg modal-sm")
-                    .addClass("modal-md");
+                    .removeClass("modal-xl modal-md modal-sm")
+                    .addClass("modal-lg");
                 break;
             case "Customer":
                 $(".dialogs")
@@ -798,6 +804,7 @@ $("#verifiedForm").on("submit", function (e) {
                 document.getElementById("orderForm").reset();
                 console.log(data);
                 $(".invoice").slideUp(2000);
+                soldNow();
             })
             .fail(function (jqxHR, textStatus, errorThrown) {
                 console.log(jqxHR, textStatus, errorThrown);
@@ -876,9 +883,39 @@ $("#verifiedForm").on("submit", function (e) {
        
     });
 
+    
 
-
-
+    let soldNow = () => {
+        let dateNow = $("#dateNow").val();
+        $.ajax({
+            url: "soldNow/"+dateNow,
+            type: "GET",
+            data: { _token: $('input[name="_token"]').val() },
+        }).done(function (data) {
+            let hold = "";
+            let i = 1;
+            data.forEach(val => {
+                hold += `
+                   <tr>
+                   <td>${i++}</td>                
+                   <td>${val.pname}</td>                
+                   <td>${val.quantity}</td>                
+                   <td>₱ ${val.pprice}.00</td>
+                   </tr>                
+                `;
+                
+            });
+            $("#soldNow").html(hold);
+            let value = data.reduce((acc, val) => {
+                return (acc += parseInt(val.pprice));
+            }, 0);
+            $("#soldTotal").text("₱ "+value+".00");
+        }).fail(function (jqxHR, textStatus, errorThrown) {
+            console.log(jqxHR, textStatus, errorThrown);
+        });
+    }
+    
+    soldNow();
 });
 
 

@@ -67,4 +67,12 @@ class OrderController extends Controller
     public function invoiceCustomer($id){
         return view("layouts.invoice", ["data" => Order::with("customer")->with("product")->where("customer_id",$id)->get()]);
     }
+
+    public function soldNow($date){
+        return response()->json(
+            DB::table('products')
+            ->join('orders', 'products.id', '=', 'orders.product_id')    
+            ->where('orders.created_at','LIKE','%'.$date.'%')->get()
+        );
+    }
 }

@@ -22,6 +22,10 @@
             </div>
         </div>
     </div> --}}
+
+    <div class="centerSpinner spinner-grow text-info" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
     
     <div class="row justify-content-center mt-3">
         <div class="col-md-12">

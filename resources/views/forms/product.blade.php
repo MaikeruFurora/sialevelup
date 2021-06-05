@@ -36,13 +36,13 @@
                 </div>
                 <div class="card" style="width: 16rem;">
                     <div class="card-body p-0">
-                        <h6 class="card-subtitle mb-2 text-muted" style="font-size: 13px">Generated Qr Code</h6>
+                        <h6 class="card-subtitle mb-2 text-muted" style="font-size: 13px">Generated QrCode | Barcode</h6>
                         <div class="row">
                             <div class="col-3">
                                 <canvas class="ml-1" id="qr-code"></canvas>
                             </div>
                             <div class="col-9">
-                                <small class="float-left py-2">The qr and barcode code are automatically saved to
+                                <small class="float-left py-2">The QR and barcode code are automatically saved to
                                     database</small>
                             </div>
                         </div>

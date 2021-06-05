@@ -12,7 +12,7 @@
 
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> --}}
     {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
     <!-- Styles -->
@@ -44,7 +44,17 @@
             bottom: 0;
             width: 100%;
             /* background-color:rgb(255, 153, 0,0.1); */
+            /* background: #343A40; */
+            color: white
         }
+        .centerSpinner {
+    display: block;
+    position: fixed;
+    z-index: 1031; /* High z-index so it is on top of the page */
+    top: 50%;
+    right: 50%; /* or: left: 50%; */
+}
+
 
     </style>
 </head>
@@ -52,7 +62,7 @@
 <body>
     <div id="app">
         <div class="container">
-            <nav class="navbar navbar-expand-md navbar-dark shadow bg-dark" >
+        <nav class="navbar navbar-expand-md navbar-dark shadow bg-dark animated fadeInDown" >
                 <a class="navbar-brand lead text-white text-monospace" href="{{ url('/') }}">
                     EESC - <small class="lead text-monospace" style="font-size: 15px">Ely's Electronic Service Center</small>
                 </a>
@@ -119,16 +129,16 @@
           </div>
         </div>
       </div>
-      <div class="footer text ">
-        <div class="container">
-            <div class="d-flex flex-row bd-highlight  animated fadeInUp">
-                <div class="p-2 bd-highlight"><small>This project created by <em>Team Avengers</em></small></div>
-                <div class="p-2 bd-highlight"><small>|&nbsp;&nbsp;&nbsp; Bootstrap <b>&middot;</b> Jquery <b>&middot;</b>
-                        Animated Effects</small>
+      <div class="footer text animated fadeInUp">
+            <div class="container" style="background: #343A40;">
+                <div class="d-flex flex-row bd-highlight">
+                    <div class="p-2 bd-highlight"><small>This project created by <em>Team Avengers</em></small></div>
+                    <div class="p-2 bd-highlight">
+                        <small>|&nbsp;&nbsp;&nbsp; Bootstrap <b>&middot;</b> Jquery <b>&middot;</b>   Animated Effects</small>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 
