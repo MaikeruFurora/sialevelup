@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="col-lg-8 col-md-12 col-sm-12">
-            <h3 class="lead animated fadeInUp mt-2">How to use the system?</h3>
+            <h3 class="lead animated fadeInUp mt-2">How to use this system?</h3>
             <ul class="list-unstyled mt-5">
                 <li class="media animated fadeInUp">
                     <img src="{{ asset('img/0c.png') }}" width="10%" class="mr-3" alt="...">

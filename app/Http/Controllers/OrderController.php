@@ -6,10 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB as FacadesDB;
 use App\Order;
 use App\Customer;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+
+    public function index(){
+        return response()->json(Order::select("created_at")->distinct()->get());
+    }
+
     public function invoice()
     {
         return view("print.invoice");

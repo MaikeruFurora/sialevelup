@@ -21,6 +21,7 @@
     <link href="{{ asset('css/hover-min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-select.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/jquery-3.5.1.min.js') }}" defer></script> --}}
@@ -32,6 +33,8 @@
     <script src="{{ asset('js/bootstrap-select.js') }}"></script>
     <script src="{{ asset('js/qrious.min.js') }}"></script>
     <script src="{{ asset('js/chart.min.js') }}"></script>
+    <script src="{{ asset('js/moment.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
     <style>
         .borderInput{
@@ -131,6 +134,7 @@
       </div>
       <div class="footer text animated fadeInUp">
             <div class="container" style="background: #343A40;">
+                {{-- <div class="container" style="background: #343A40;"> --}}
                 <div class="d-flex flex-row bd-highlight">
                     <div class="p-2 bd-highlight"><small>This project created by <em>Team Avengers</em></small></div>
                     <div class="p-2 bd-highlight">

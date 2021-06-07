@@ -20,12 +20,13 @@
         </div>
     </form>
    <div class="table-responsive">
-    <table class="table table-sm mt-3 table-bordered">
+    <table class="table mt-3 table-bordered">
       <thead>
         <tr>
           <th scope="col" width="10%">#</th>
-          <th scope="col" width="40%">Fullname</th>
-          <th scope="col" width="40%">Username</th>
+          <th scope="col" width="30%">Fullname</th>
+          <th scope="col" width="30%">Username</th>
+          <th scope="col" width="20%">Date</th>
           <th scope="col" width="10%">Action</th>
         </tr>
       </thead>

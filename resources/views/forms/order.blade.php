@@ -1,6 +1,6 @@
 <div id="OrderDiv">
     <div class="row">
-        <div class="col-lg-3 col-md-12 col-sm-12">
+        <div class="col-lg-3 col-md-12 col-sm-12 ">
             {{-- <div class="card mb-1">
                 <div class="card-body">
 

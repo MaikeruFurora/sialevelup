@@ -8,12 +8,12 @@
                   <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
                 <div class="form-group">
-                  <small for="exampleInputPassword1">Password</small>
-                  <input type="password" class="form-control" id="exampleInputPassword1">
+                  <small>Password</small>
+                  <input name="password" type="new-password" class="form-control">
                 </div>
                 <div class="form-group">
-                    <small for="exampleInputPassword1">Confirm-Password</small>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <small>Confirm-Password</small>
+                    <input name="confirm-password" type="new-password" class="form-control">
                 </div>
                 <button type="button" class="btn btn-sm btn-primary">Update</button>
               </form>

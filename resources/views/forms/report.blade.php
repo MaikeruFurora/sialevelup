@@ -41,8 +41,10 @@
         </div>
         <div class="col-lg-5 col-md-12 col-sm-12">
             <div class="card">
+                
                 <div class="card-header p-1 text-monospace bg-dark text-white">
-                    <small>Report as for Today ({{ date("M,d Y") }})</small>
+                    <input type="text" class="form-control form-control-sm datetimepicker mb-2" id="previousReport" value="({{ date("Y-m-d") }}">
+                    <small>Report as for <span id="reportTxt">Today ({{ date("Y-m-d") }})</span></small>
                     <input type="hidden" id="dateNow" value="{{ date("Y-m-d")}}">
                 </div>
                 <div class="card-body p-0 pb-0">

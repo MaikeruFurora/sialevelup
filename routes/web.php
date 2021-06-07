@@ -36,6 +36,7 @@ Route::post('/Order-post', 'OrderController@store');
 Route::get('/sortCustomer', 'OrderController@sortCustomer');
 Route::delete('/deleteCustomer/{id}', 'OrderController@deleteCustomer');
 Route::get('/invoiceCustomer/{id}', 'OrderController@invoiceCustomer');
+Route::get('/order', 'OrderController@index');
 
 Route::get('soldNow/{data}','OrderController@soldNow');
 

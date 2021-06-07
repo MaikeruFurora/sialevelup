@@ -312,6 +312,7 @@ $("#verifiedForm").on("submit", function (e) {
                             <td>${i++}</td>
                             <td>${val.name}</td>
                             <td>${val.username}</td>
+                            <td>${val.created_at.split("T")[0]}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
                                     <button type="button" class="btn btn-sm btn-danger pl-2 pr-2 udelete" id="${val.id}">
@@ -561,7 +562,8 @@ $("#verifiedForm").on("submit", function (e) {
             {
                 data: null,
                 render: function (data) {
-                    return `<button type="button" style="font-size:10px" class="btn btn-sm btn-danger csdelete" id="${data.id}">Delete</button>`;
+                    return `<button type="button" style="font-size:10px" class="btn btn-sm btn-danger csdelete" id="${data.id}">Delete</button>
+                            <button type="button" style = "font-size:10px" class="btn btn-sm btn-info pl-3 pr-3" id = "${data.id}" > Edit</button >`;
                 },
             },
         ],
@@ -804,7 +806,7 @@ $("#verifiedForm").on("submit", function (e) {
                 document.getElementById("orderForm").reset();
                 console.log(data);
                 $(".invoice").slideUp(2000);
-                soldNow();
+                soldNow(dateNow);
             })
             .fail(function (jqxHR, textStatus, errorThrown) {
                 console.log(jqxHR, textStatus, errorThrown);
@@ -884,28 +886,43 @@ $("#verifiedForm").on("submit", function (e) {
     });
 
     
-
-    let soldNow = () => {
-        let dateNow = $("#dateNow").val();
+    let dateNow = $("#dateNow").val();
+    let soldNow = (dateNow) => {
         $.ajax({
             url: "soldNow/"+dateNow,
             type: "GET",
             data: { _token: $('input[name="_token"]').val() },
+             beforeSend: function () {
+                 $("#soldNow").html(`
+                 <tr> <td colspan='4' class='text-center p-1'>
+                 <div class="p-2 text-warning spinner-border spinner-border-sm" role="status">
+                 <span class="sr-only">Loading...</span>
+             </div>
+                 </td> </tr>
+                 `).addClass("text-center");
+            },
         }).done(function (data) {
             let hold = "";
             let i = 1;
-            data.forEach(val => {
-                hold += `
-                   <tr>
-                   <td>${i++}</td>                
-                   <td>${val.pname}</td>                
-                   <td>${val.quantity}</td>                
-                   <td>₱ ${val.pprice}.00</td>
-                   </tr>                
-                `;
+            if (data.length>0) {
+                data.forEach(val => {
+                    hold += `
+                       <tr>
+                       <td>${i++}</td>                
+                       <td>${val.pname}</td>                
+                       <td>${val.quantity}</td>                
+                       <td>₱ ${val.pprice}.00</td>
+                       </tr>                
+                    `;     
+                });
+            } else {
+                hold = "<tr> <td colspan='4' class='text-center p-2'>No Data Found</td> </tr>";
+            }
+           
                 
+            $('#soldNow').fadeOut('slow', function(){
+                $("#soldNow").fadeIn(1300).html(hold);
             });
-            $("#soldNow").html(hold);
             let value = data.reduce((acc, val) => {
                 return (acc += parseInt(val.pprice));
             }, 0);
@@ -915,7 +932,49 @@ $("#verifiedForm").on("submit", function (e) {
         });
     }
     
-    soldNow();
+    soldNow(dateNow);
+
+    getPreviousReport = (dateNow) => {
+        let holdHTML = `<option value="${dateNow}">~ Select ~</option>`;
+        $.ajax({
+            url: "/order",
+            type: "GET",
+            data: { _token: $('input[name="_token"]').val() },
+        }).done(function (data) {
+            const s = data.map(val => {
+                if (val.created_at.split("T")[0] != dateNow)
+                   return val.created_at.split("T")[0]
+            })
+            // console.log(s);
+            s.forEach((val,i,arr) => {
+                if (arr.indexOf(val)==i && val!=undefined) {
+                    holdHTML +=
+                        `
+                        <option value="${val}">${val}</option>
+                        `
+                }
+            });
+            $("#previousReport").html(holdHTML);
+        }).fail(function (jqxHR, textStatus, errorThrown) {
+            console.log(jqxHR, textStatus, errorThrown);
+        });
+    }
+    getPreviousReport(dateNow);
+    $("#previousReport").on('blur', function () {
+        $("#reportTxt").text($(this).val())
+        if (dateNow>=$(this).val()) {
+            soldNow($(this).val());
+        } else {
+            $("#reportTxt").text($(this).val())
+            // alert("wrong");
+            $(this).val(dateNow)
+            soldNow($(this).val());
+        }
+    });
+
+    $('.datetimepicker').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
 });
 
 
