@@ -73,8 +73,6 @@ $(function () {
         });
     });
 
-    
-
     /**
      *
      *  Section of Main page card
@@ -120,36 +118,71 @@ $(function () {
         { field: "User Guide", color: "#DD806F", font: "style" },
     ];
     // <img src="http://127.0.0.1:8000/img/${i}.png" width="40%">
+
+    let holds = "";
+    fieldNames.forEach((e, i) => {
+        holds += `<div class="col-lg-${
+            e.field == "Chart" ? "4" : "2"
+        }  col-md-6 col-sm-6  mt-1 mb-1 animated fadeIn" style="cursor:pointer">
+        <div class="card shadow card-hover text-center">
+            <div class="card-body p-3">
+                <span style="font-size:30px;color:${
+                    e.color
+                }" class="material-icons">
+                ${e.font}
+                </span>
+            </div>
+            <div class="card-footer text-monospace p-2" style="background:${
+                e.color
+            };color:white;border-top:white;font-size:10px">
+                <b>${e.field}</b>
+            </div>
+        </div>
+    </div>`;
+    });
+    $("#showData3").html(holds);
+
     let user_type = $("#user_type").val();
-    const newFields = user_type==0?fieldNames.filter((val, i)=>i!=1 && i!=9 && i!=6 && i!=7):fieldNames
+    const newFields =
+        user_type == 0
+            ? fieldNames.filter(
+                  (val, i) => i != 1 && i != 9 && i != 6 && i != 7
+              )
+            : fieldNames;
     newFields.forEach((e, i) => {
-        hold += `<div class="col-lg-${e.field=='Chart'?'6':'3'} col-md-6 col-sm-6  mt-3 mb-3 animated fadeIn" style="cursor:pointer">
-                <div class="card shadow card-hover text-center ${e.field == 'Chart' ? 'pt-1' : 'pt-4'} btnAction ${e.field == 'Chart' ? '' : 'hvr-grow'}" 
-                    style="background:${e.color};width:100%;padding-top:6px;" id="${e.field}">
-                    <div class="card-body ${e.field=='Chart'?'p-3':'p-4'}">
-                    
-                    ${e.field != 'Chart'
-                    ?
-                    `<span style="font-size:60px;color:#e6e6e6" class="ml-5 mr-5 material-icons">
+        hold += `<div class="col-lg-${
+            e.field == "Chart" ? "6" : "3"
+        } col-md-6 col-sm-6  mt-3 mb-3 animated fadeIn" style="cursor:pointer">
+                <div class="card shadow-lg card-hover text-center ${
+                    e.field == "Chart" ? "pt-1" : "pt-4"
+                } btnAction ${e.field == "Chart" ? "" : "hvr-grow"}" 
+                    style="background:white;width:100%;padding-top:6px;" id="${
+                        e.field
+                    }">
+                    <div class="card-body ${
+                        e.field == "Chart" ? "p-3" : "p-4"
+                    }">
+                    ${
+                        e.field != "Chart"
+                            ? `<span style="font-size:60px;color:${e.color}" class="ml-5 mr-5 material-icons">
                     ${e.font}
                     </span>`
-                    :
-                    `
+                            : `
                     <div class="row">
                         <div class="col-lg-6 col-md-12 col-sm-12">
                             <img src="img/plan.svg" width="97%" alt="">
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12">
-                        <ul class="list-group text-white text-monospace">
-                            <li class="hvr-grow list-group-item d-flex justify-content-between align-items-center  border" style="font-size:13px;background:#D05543">
+                        <ul class="list-group text-monospace">
+                            <li class="hvr-grow list-group-item d-flex justify-content-between align-items-center  border" style="font-size:13px;background:#">
                             Total of no. Product
                             <span class="badge badge-info text-white badge-pill">1,150</span>
                             </li>
-                            <li class="hvr-grow list-group-item d-flex justify-content-between align-items-center border  mt-1 mb-1" style="font-size:13px;background:#D05543">
+                            <li class="hvr-grow list-group-item d-flex justify-content-between align-items-center border  mt-1 mb-1" style="font-size:13px;background:#">
                             No. of Verified users
                             <span class="badge badge-info text-white badge-pill">3</span>
                             </li>
-                            <li class="hvr-grow list-group-item d-flex justify-content-between align-items-center border" style="font-size:13px;background:#D05543">
+                            <li class="hvr-grow list-group-item d-flex justify-content-between align-items-center border" style="font-size:13px;background:#">
                             Total of no. Category
                             <span class="badge badge-info text-white badge-pill">10</span>
                             </li>
@@ -160,14 +193,14 @@ $(function () {
                     }
 
                     </div>
-                    ${e.field != 'Chart'
-                    ?
-                    `
+                    ${
+                        e.field != "Chart"
+                            ? `
                     <div class="card-footer text-monospace p-2" style="background:#333333;color:white;border-top:white">
                         <b>${e.field}</b>
                     </div>
                    `
-                    : ``
+                            : ``
                     }
                        
                 </div>
@@ -176,19 +209,16 @@ $(function () {
 
     $("#showData").html(hold).hide();
     setTimeout(() => {
-        $(".centerSpinner").removeClass('spinner-grow');
+        $(".centerSpinner").removeClass("spinner-grow");
         $("#showData").html(hold).fadeIn();
     }, 3000);
 
-
-    
     $(document).on("click", ".btnAction", function () {
         let data = $(this).attr("id");
         let separate = data.split("_");
         let ddd = separate[0].split(" ").join("_");
-        console.log(ddd);
+        // console.log(ddd);
         switch (ddd) {
-           
             case "Category":
                 $(".dialogs")
                     .removeClass("modal-xl modal-lg")
@@ -196,8 +226,8 @@ $(function () {
                 break;
             case "Verified_User":
                 $(".dialogs")
-                .removeClass("modal-md modal-xl modal-sm")
-                .addClass("modal-lg");
+                    .removeClass("modal-md modal-xl modal-sm")
+                    .addClass("modal-lg");
                 break;
             case "Setting":
                 $(".dialogs")
@@ -213,7 +243,7 @@ $(function () {
                 $(".dialogs")
                     .removeClass("modal-md modal-lg modal-sm")
                     .addClass("modal-xl");
-                
+
                 break;
             case "Report":
                 $(".dialogs")
@@ -250,17 +280,16 @@ $(function () {
         // });
         fieldNames.map((val) => {
             let fieldNow = val.field.split(" ").join("_");
-            if(fieldNow == ddd){
+            if (fieldNow == ddd) {
                 $("#" + fieldNow + "Div").show();
-                $(".modal-header").css('background-color', val.color);
-            }else {
+                $(".modal-header").css("background-color", val.color);
+            } else {
                 $("#" + fieldNow + "Div").hide();
             }
-            
+
             // console.log(ddd);
         });
-        if(data!="Chart")
-            OpenModal(separate[0], separate[1], data);
+        if (data != "Chart") OpenModal(separate[0], separate[1], data);
         // console.log(data);
         // $(".targetForm").attr("id", separate[0] + "Form");
     });
@@ -268,39 +297,40 @@ $(function () {
     let OpenModal = (name, action, complete) => {
         $("#staticBackdrop").modal("show");
         $("#staticBackdropLabel").text(name);
-        name=="Order"?$("#enteredBarcode").focus().addClass("borderInput"):''
+        name == "Order"
+            ? $("#enteredBarcode").focus().addClass("borderInput")
+            : "";
     };
 
-
-/*
+    /*
 *
  this area for verfied user development only
 
 */
 
-$("#verifiedForm").on("submit", function (e) {
-    e.preventDefault();
-    $.ajax({
-        url: "/user",
-        type: "POST",
-        contentType: false,
-        processData: false,
-        cache: false,
-        data: new FormData(this),
-    })
-        .done(function (data) {
-            getVerifiedUser();
-            document.getElementById("verifiedForm").reset();
+    $("#verifiedForm").on("submit", function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/user",
+            type: "POST",
+            contentType: false,
+            processData: false,
+            cache: false,
+            data: new FormData(this),
         })
-        .fail(function (jqxHR, textStatus, errorThrown) {
-            console.log(jqxHR, textStatus, errorThrown);
-        });
-});
-    
-    let getVerifiedUser = () => {
+            .done(function (data) {
+                getVerifiedUser();
+                document.getElementById("verifiedForm").reset();
+            })
+            .fail(function (jqxHR, textStatus, errorThrown) {
+                console.log(jqxHR, textStatus, errorThrown);
+            });
+    });
+
+    let getVerifiedUser = async () => {
         let thold = "";
         let i = 1;
-        $.ajax({
+        await $.ajax({
             url: "/getUser",
             type: "GET",
             dataType: "json",
@@ -315,12 +345,16 @@ $("#verifiedForm").on("submit", function (e) {
                             <td>${val.created_at.split("T")[0]}</td>
                             <td>
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-sm btn-danger pl-2 pr-2 udelete" id="${val.id}">
+                                    <button type="button" class="btn btn-sm btn-danger pl-2 pr-2 udelete" id="${
+                                        val.id
+                                    }">
                                         <span style="font-size:17px;color:#e6e6e6" class="material-icons">
                                             delete_forever
                                         </span>
                                     </button>
-                                    <button type="button" class="btn btn-sm btn-primary pl-2 pr-2 uedit" id="${val.id}">
+                                    <button type="button" class="btn btn-sm btn-primary pl-2 pr-2 uedit" id="${
+                                        val.id
+                                    }">
                                         <span style="font-size:17px;color:#e6e6e6" class="material-icons">
                                             edit
                                         </span>
@@ -334,7 +368,7 @@ $("#verifiedForm").on("submit", function (e) {
             .fail(function (jqxHR, textStatus, errorThrown) {
                 console.log(jqxHR, textStatus, errorThrown);
             });
-    }
+    };
 
     getVerifiedUser();
 
@@ -349,7 +383,7 @@ $("#verifiedForm").on("submit", function (e) {
                 <div class="spinner-border spinner-border-sm" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>`);
-            }
+            },
         })
             .done(function (data) {
                 $("#uname").val(data.name);
@@ -376,7 +410,7 @@ $("#verifiedForm").on("submit", function (e) {
                 console.log(jqxHR, textStatus, errorThrown);
             });
     });
-    
+
     /*
 
  this are for category development only 
@@ -392,8 +426,16 @@ $("#verifiedForm").on("submit", function (e) {
             processData: false,
             cache: false,
             data: new FormData(this),
+            beforeSend: function () {
+                $("#categoryBtn").html(`
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                `);
+            },
         })
             .done(function (data) {
+                $("#categoryBtn").html(`Submit`);
                 console.log($("#CategoryForm"));
                 getCategory();
                 document.getElementById("CategoryForm").reset();
@@ -402,10 +444,10 @@ $("#verifiedForm").on("submit", function (e) {
                 console.log(jqxHR, textStatus, errorThrown);
             });
     });
-    let getCategory = () => {
+    let getCategory = async () => {
         let hold = "";
         let thold = "";
-        $.ajax({
+        await $.ajax({
             url: "getCategory",
             type: "GET",
             dataType: "json",
@@ -487,10 +529,19 @@ $("#verifiedForm").on("submit", function (e) {
             processData: false,
             cache: false,
             data: new FormData(this),
+            beforeSend: function () {
+                $("#button-addon2").html(`
+                Loading...
+                <div class="spinner-border spinner-border-sm" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                `);
+            },
         })
             .done(function (data) {
+                $("#button-addon2").html(`Submit`);
                 getCategory();
-                options();
+                //options();
                 document.getElementById("ProductForm").reset();
                 tableProduct.ajax.reload();
                 CustomerTable.ajax.reload();
@@ -605,14 +656,14 @@ $("#verifiedForm").on("submit", function (e) {
      * For order development only
      *
      */
-    
+
     let quantiyHold = null;
     let idHold = null;
     let nameHold = null;
     let priceHold = null;
-    let options = () => {
+    let options = async () => {
         let holdProduct = "";
-        $.ajax({
+        await $.ajax({
             url: "getProductOption",
             type: "GET",
             dataType: "json",
@@ -629,18 +680,24 @@ $("#verifiedForm").on("submit", function (e) {
     };
     options();
     $("#selectProduct").on("change", function () {
+        $(this).selectpicker("refresh");
         $.ajax({
             url: "Product-show/" + $(this).val(),
             type: "POST",
             dataType: "json",
             data: { _token: $('input[name="_token"]').val() },
+            beforeSend: function () {
+                $("#origPrice").val("Loading...");
+            },
         })
             .done(function (data) {
+                console.log(data);
                 $("#origPrice").val(data.pprice);
                 quantiyHold = data.pquantity;
                 priceHold = data.pprice;
                 idHold = data.id;
                 nameHold = data.pname;
+                options();
             })
             .fail(function (jqxHR, textStatus, errorThrown) {
                 console.log(jqxHR, textStatus, errorThrown);
@@ -657,17 +714,21 @@ $("#verifiedForm").on("submit", function (e) {
         })
             .done(function (data) {
                 if (data[0] != undefined) {
-
                     if (data[0].pquantity != 0) {
                         if (arrayproduct.find((val) => val.id == idHold)) {
                             $(".addTextMsg").text("Already Added this Item!");
-                            $("#exampleModalCenter").modal("show")
+                            $("#exampleModalCenter").modal("show");
                             setTimeout(function () {
-                                $("#exampleModalCenter").modal("hide")
-                                $("#enteredBarcode").focus().val("").addClass("borderInput");
+                                $("#exampleModalCenter").modal("hide");
+                                $("#enteredBarcode")
+                                    .focus()
+                                    .val("")
+                                    .addClass("borderInput");
                             }, 3000);
                         } else {
-                            $("#enteredQuantity").focus().addClass("borderInput");
+                            $("#enteredQuantity")
+                                .focus()
+                                .addClass("borderInput");
                             $("#origPrice").val(data[0].pprice);
                             quantiyHold = data[0].pquantity;
                             priceHold = data[0].pprice;
@@ -675,20 +736,25 @@ $("#verifiedForm").on("submit", function (e) {
                             nameHold = data[0].pname;
                         }
                     } else {
-                        $(".addTextMsg").text("Sorry, out of Stock this item")
-                        $("#exampleModalCenter").modal("show")
+                        $(".addTextMsg").text("Sorry, out of Stock this item");
+                        $("#exampleModalCenter").modal("show");
                         setTimeout(function () {
-                            $("#exampleModalCenter").modal("hide")
-                            $("#enteredBarcode").focus().val("").removeClass("borderInput");
+                            $("#exampleModalCenter").modal("hide");
+                            $("#enteredBarcode")
+                                .focus()
+                                .val("")
+                                .removeClass("borderInput");
                         }, 3000);
                     }
-
                 } else {
                     $(".addTextMsg").text("No product found!");
-                    $("#exampleModalCenter").modal("show")
+                    $("#exampleModalCenter").modal("show");
                     setTimeout(function () {
-                        $("#exampleModalCenter").modal("hide")
-                        $("#enteredBarcode").focus().val("").addClass("borderInput");
+                        $("#exampleModalCenter").modal("hide");
+                        $("#enteredBarcode")
+                            .focus()
+                            .val("")
+                            .addClass("borderInput");
                     }, 3000);
                 }
             })
@@ -702,12 +768,17 @@ $("#verifiedForm").on("submit", function (e) {
         let enteredQuantity = parseInt(
             isNaN($(this).val()) ? 0 : $(this).val()
         );
-        enteredQuantity > quantiyHold
-            ? confirm("Sorry, over quantity entered!")
-            : $("#computedAmount").val(enteredQuantity * priceHold);
+        if (enteredQuantity > quantiyHold) {
+            confirm("Sorry, over quantity entered!");
+            $(this).val("");
+        } else {
+            $("#computedAmount").val(enteredQuantity * priceHold);
+            $(".btnSave").focus();
+        }
     });
+
     const arrayproduct = [];
-    let tableOrder = () => {
+    let tableOrder = async () => {
         let e = "";
         arrayproduct.length > 0
             ? arrayproduct.forEach((val, i) => {
@@ -719,7 +790,7 @@ $("#verifiedForm").on("submit", function (e) {
             </tr>`;
               })
             : (e = `<tr><td colspan="4">No product selected</td></tr>`);
-        $(".tableOrder").html(e);
+        await $(".tableOrder").html(e);
         totalAmountVal();
     };
     $(".btnSave").on("click", function () {
@@ -728,15 +799,15 @@ $("#verifiedForm").on("submit", function (e) {
         let enteredQuantity = $("#enteredQuantity").val();
         let computedAmount = $("#computedAmount").val();
         if (
-            selectProduct == "" &&
-            origPrice == "" &&
-            enteredQuantity == "" &&
+            selectProduct == "" ||
+            origPrice == "" ||
+            enteredQuantity == "" ||
             computedAmount == ""
         ) {
-            $(".addTextMsg").text("Please Attach atleast one product")
-            $("#exampleModalCenter").modal("show")
+            $(".addTextMsg").text("Please Attach atleast one product");
+            $("#exampleModalCenter").modal("show");
             setTimeout(function () {
-                $("#exampleModalCenter").modal("hide")
+                $("#exampleModalCenter").modal("hide");
                 $("#enteredBarcode").focus().val("").removeClass("borderInput");
             }, 3000);
         } else {
@@ -769,11 +840,11 @@ $("#verifiedForm").on("submit", function (e) {
         arrayproduct.splice(i, 1);
         tableOrder();
     });
-    let totalAmountVal = () => {
+    let totalAmountVal = async () => {
         let vals = arrayproduct.reduce((acc, val) => {
             return (acc += parseInt(val.total));
         }, 0);
-        $("#grossAmount").val((vals!=0)?vals:'');
+        await $("#grossAmount").val(vals != 0 ? vals : "");
     };
     $("#orderForm").on("submit", function (e) {
         e.preventDefault();
@@ -788,25 +859,27 @@ $("#verifiedForm").on("submit", function (e) {
                 orders: arrayproduct,
             },
             beforeSend: function () {
-                $('#btnOrder').html(`
+                $("#btnOrder").html(`
                   Processing...
                   <div class="spinner-border spinner-border-sm" role="status">
                       <span class="sr-only">Loading...</span>
                   </div>
                 `);
-              }
+            },
         })
             .done(function (data) {
-                $("#btnOrder").html('Submit');
+                $("#btnOrder").html("Submit");
                 arrayproduct.splice(0, arrayproduct.length);
                 tableOrder();
                 tableProduct.ajax.reload();
                 CustomerTable.ajax.reload();
                 invoiceTable.ajax.reload();
                 document.getElementById("orderForm").reset();
-                console.log(data);
+                //console.log(data);
                 $(".invoice").slideUp(2000);
                 soldNow(dateNow);
+                $("#enteredBarcode").focus().val("").addClass("borderInput");
+                // options();
             })
             .fail(function (jqxHR, textStatus, errorThrown) {
                 console.log(jqxHR, textStatus, errorThrown);
@@ -821,23 +894,23 @@ $("#verifiedForm").on("submit", function (e) {
     //         : $(".invoice").slideUp(1000);
     // });
 
-
-
     // backup database prank....
     $("#backupBtn").click(function () {
         console.log("DAdas");
-        $("#backupBtn").html(`Backup in progress.. <div class="spinner-border spinner-border-sm" role="status">
+        $(
+            "#backupBtn"
+        ).html(`Backup in progress.. <div class="spinner-border spinner-border-sm" role="status">
             <span class="sr-only">Loading...</span>
         </div>
         `);
         setTimeout(function () {
             $("#backupBtn").html(`Download Databse SQL`);
-            document.getElementById('download').click();
+            document.getElementById("download").click();
         }, 5000);
         // $("#donwloadprank").click();
-    })
+    });
 
-    // invoice table 
+    // invoice table
     let invoiceTable = $("#invoiceTable").DataTable({
         lengthChange: false,
         ajax: "sortCustomer",
@@ -857,7 +930,7 @@ $("#verifiedForm").on("submit", function (e) {
         ],
     });
 
-    $(document).on('click', '.invoiceBtn', function () {
+    $(document).on("click", ".invoiceBtn", function () {
         let id = $(this).attr("id");
         $.ajax({
             url: "invoiceCustomer/" + id,
@@ -882,99 +955,102 @@ $("#verifiedForm").on("submit", function (e) {
             .fail(function (jqxHR, textStatus, errorThrown) {
                 console.log(jqxHR, textStatus, errorThrown);
             });
-       
     });
 
-    
     let dateNow = $("#dateNow").val();
-    let soldNow = (dateNow) => {
-        $.ajax({
-            url: "soldNow/"+dateNow,
+    let soldNow = async (dateNow) => {
+        await $.ajax({
+            url: "soldNow/" + dateNow,
             type: "GET",
             data: { _token: $('input[name="_token"]').val() },
-             beforeSend: function () {
-                 $("#soldNow").html(`
+            beforeSend: function () {
+                $("#soldNow")
+                    .html(
+                        `
                  <tr> <td colspan='4' class='text-center p-1'>
                  <div class="p-2 text-warning spinner-border spinner-border-sm" role="status">
                  <span class="sr-only">Loading...</span>
              </div>
                  </td> </tr>
-                 `).addClass("text-center");
+                 `
+                    )
+                    .addClass("text-center");
             },
-        }).done(function (data) {
-            let hold = "";
-            let i = 1;
-            if (data.length>0) {
-                data.forEach(val => {
-                    hold += `
+        })
+            .done(function (data) {
+                let hold = "";
+                let i = 1;
+                if (data.length > 0) {
+                    data.forEach((val) => {
+                        hold += `
                        <tr>
                        <td>${i++}</td>                
                        <td>${val.pname}</td>                
                        <td>${val.quantity}</td>                
                        <td>₱ ${val.pprice}.00</td>
                        </tr>                
-                    `;     
+                    `;
+                    });
+                } else {
+                    hold =
+                        "<tr> <td colspan='4' class='text-center p-2'>No Data Found</td> </tr>";
+                }
+
+                $("#soldNow").fadeOut("slow", function () {
+                    $("#soldNow").fadeIn(1300).html(hold);
                 });
-            } else {
-                hold = "<tr> <td colspan='4' class='text-center p-2'>No Data Found</td> </tr>";
-            }
-           
-                
-            $('#soldNow').fadeOut('slow', function(){
-                $("#soldNow").fadeIn(1300).html(hold);
+                let value = data.reduce((acc, val) => {
+                    return (acc += parseInt(val.pprice));
+                }, 0);
+                $("#soldTotal").text("₱ " + value + ".00");
+            })
+            .fail(function (jqxHR, textStatus, errorThrown) {
+                console.log(jqxHR, textStatus, errorThrown);
             });
-            let value = data.reduce((acc, val) => {
-                return (acc += parseInt(val.pprice));
-            }, 0);
-            $("#soldTotal").text("₱ "+value+".00");
-        }).fail(function (jqxHR, textStatus, errorThrown) {
-            console.log(jqxHR, textStatus, errorThrown);
-        });
-    }
-    
+    };
+
     soldNow(dateNow);
 
-    getPreviousReport = (dateNow) => {
+    getPreviousReport = async (dateNow) => {
         let holdHTML = `<option value="${dateNow}">~ Select ~</option>`;
-        $.ajax({
+        await $.ajax({
             url: "/order",
             type: "GET",
             data: { _token: $('input[name="_token"]').val() },
-        }).done(function (data) {
-            const s = data.map(val => {
-                if (val.created_at.split("T")[0] != dateNow)
-                   return val.created_at.split("T")[0]
-            })
-            // console.log(s);
-            s.forEach((val,i,arr) => {
-                if (arr.indexOf(val)==i && val!=undefined) {
-                    holdHTML +=
-                        `
+        })
+            .done(function (data) {
+                const s = data.map((val) => {
+                    if (val.created_at.split("T")[0] != dateNow)
+                        return val.created_at.split("T")[0];
+                });
+                // console.log(s);
+                s.forEach((val, i, arr) => {
+                    if (arr.indexOf(val) == i && val != undefined) {
+                        holdHTML += `
                         <option value="${val}">${val}</option>
-                        `
-                }
+                        `;
+                    }
+                });
+                $("#previousReport").html(holdHTML);
+            })
+            .fail(function (jqxHR, textStatus, errorThrown) {
+                console.log(jqxHR, textStatus, errorThrown);
             });
-            $("#previousReport").html(holdHTML);
-        }).fail(function (jqxHR, textStatus, errorThrown) {
-            console.log(jqxHR, textStatus, errorThrown);
-        });
-    }
+    };
     getPreviousReport(dateNow);
-    $("#previousReport").on('blur', function () {
-        $("#reportTxt").text($(this).val())
-        if (dateNow>=$(this).val()) {
+    $("#previousReport").on("blur", function () {
+        $("#reportTxt").text($(this).val());
+        if (dateNow >= $(this).val()) {
             soldNow($(this).val());
         } else {
-            $("#reportTxt").text($(this).val())
+            $("#reportTxt").text($(this).val());
             // alert("wrong");
-            $(this).val(dateNow)
+            $(this).val(dateNow);
             soldNow($(this).val());
         }
     });
 
-    $('.datetimepicker').datetimepicker({
-        format: 'YYYY-MM-DD'
+    $(".datetimepicker").datetimepicker({
+        format: "YYYY-MM-DD",
     });
 });
-
-

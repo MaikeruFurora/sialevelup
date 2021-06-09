@@ -5,7 +5,7 @@
             <input type="text" name="cname" class="form-control" placeholder="Category Name"
                 aria-describedby="button-addon2" required>
             <div class="input-group-append">
-                <button class="btn btn-outline-success" type="submit">Submit</button>
+                <button class="btn btn-outline-success" id="categoryBtn" type="submit">Submit</button>
             </div>
         </div>
     </form>

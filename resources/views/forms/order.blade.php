@@ -55,8 +55,8 @@
                             </select>
                         </div>
                         <div class="col-lg-2 col-md-12 col-sm-12">
-                            <input type="text" class="form-control form-control-sm my-1" id="origPrice" placeholder="Price"
-                                readonly>
+                            <input type="text" class="form-control form-control-sm my-1" id="origPrice"
+                                placeholder="Price" readonly>
                         </div>
                         <div class="col-lg-2 col-md-12 col-sm-12">
                             <input type="number" required class="form-control form-control-sm my-1" id="enteredQuantity"
